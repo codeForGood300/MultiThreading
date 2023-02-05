@@ -16,9 +16,11 @@ class RaceCondition {
 
         int i = 1000000;
         while (i != 0) {
-            if (randInt % 5 == 0) {
-                if (randInt % 5 != 0)
-                    System.out.println(randInt);
+            synchronized(this) {
+                if (randInt % 5 == 0) {
+                    if (randInt % 5 != 0)
+                        System.out.println(randInt);
+                }
             }
             i--;
         }
@@ -28,8 +30,10 @@ class RaceCondition {
 
         int i = 1000000;
         while (i != 0) {
-            randInt = random.nextInt(1000);
-            i--;
+            synchronized(this) {
+                randInt = random.nextInt(1000);
+                i--;
+            }
         }
     }
 
